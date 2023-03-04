@@ -1,6 +1,7 @@
 #juan@Xub18:~/mywd$ su
 #Contraseña: Arrow_ECS
 #root@Xub18:/home/juan/mywd#
+# Install: https://computingforgeeks.com/how-to-setup-openshift-origin-on-ubuntu/
 #===============================
 oc cluster up
 oc login -u admin
@@ -9,8 +10,9 @@ oc whoami
 oc version
 oc get is -n openshift
 oc adm
+oc logout
 # ============================
-oc loging developer
+oc loging -u developer
 oc whoami
 oc new-project arcade
 oc get projects
