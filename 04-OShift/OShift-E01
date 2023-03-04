@@ -1,5 +1,5 @@
 oc cluster up
-os loging developer
+oc loging developer
 oc status
 oc whoami
 oc new-project arcade
