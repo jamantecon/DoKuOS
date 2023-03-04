@@ -12,7 +12,8 @@ oc get is -n openshift
 oc adm
 oc logout
 # ============================
-oc loging -u developer
+oc login -u developer
+# Password: developer
 oc whoami
 oc new-project arcade
 oc get projects
