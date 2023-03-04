@@ -1,1 +1,6 @@
-
+oc cluster up
+os loging developer
+oc status
+oc whoami
+oc new-project arcade
+oc get projects
