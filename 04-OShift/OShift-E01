@@ -1,4 +1,14 @@
+#juan@Xub18:~/mywd$ su
+#Contraseña: Arrow_ECS
+#root@Xub18:/home/juan/mywd#
+#===============================
 oc cluster up
+oc login -u admin
+# Password: admin
+oc whoami
+oc version
+oc adm
+# ============================
 oc loging developer
 oc whoami
 oc new-project arcade
