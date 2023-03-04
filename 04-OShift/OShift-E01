@@ -1,6 +1,7 @@
 oc cluster up
 oc loging developer
-oc status
 oc whoami
 oc new-project arcade
 oc get projects
+oc status
+oc get is -n openshift
