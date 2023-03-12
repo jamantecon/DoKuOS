@@ -4,16 +4,14 @@
 # Install: https://computingforgeeks.com/how-to-setup-openshift-origin-on-ubuntu/
 #===============================
 oc cluster up
-oc login -u admin
-# Password: admin
+oc login -u admin -p admin
 oc whoami
 oc version
 oc get is -n openshift
 oc adm
 oc logout
 # ============================
-oc login -u developer
-# Password: developer
+oc login -u developer -p developer
 oc whoami
 oc new-project arcade
 oc get projects
