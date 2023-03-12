@@ -13,7 +13,7 @@ oc logout
 # ============================
 oc login -u developer -p developer
 oc whoami
-oc new-project arcade
+oc new-project myproject
 oc get projects
 oc status
 
