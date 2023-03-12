@@ -8,6 +8,7 @@ oc login -u admin -p admin
 oc whoami
 oc version
 oc get is -n openshift
+docker images 
 oc adm
 oc logout
 # ============================
@@ -15,5 +16,6 @@ oc login -u developer -p developer
 oc whoami
 oc new-project myproject
 oc get projects
+oc get is 
 oc status
 
