@@ -6,14 +6,14 @@
 oc cluster up
 oc login -u system:admin
 oc version
+oc get nodes
 oc whoami
 oc create user user1
 oc get users
 oc new-project new-project1
 oc get projects
-oc new-project new-project1
-oc projects
 oc delete project new-project1
+oc projects
 oc get is -n openshift
 docker images 
 oc adm
