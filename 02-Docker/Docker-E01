@@ -3,7 +3,7 @@
 docker version                                                                 # Docker version
 docker ps                                                                      # List containers 
 alias docker-ps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"'  # Alias for pretty format docker ps
-dockps                                                                         # List container (Pretty format)
+docker-ps                                                                      # List container (Pretty format)
 docker run  httpd                                                              # Container in the Foreground --> Hanged terminal 
 docker run --help                                                              # Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 docker run -dit --name my-httpd -p 8080:80 httpd                               # Runs on the backgorund; Image: https://hub.docker.com/_/httpd  
@@ -19,3 +19,8 @@ docker exec -it myapache /bin/bash                                             #
 --> pwd --> cd / --> ls -a  -- exit                                            # Entering commands in the container's terminal
 docker stop  myapache                                                          # Stop container
 docker rm  myapache                                                            # Remove container
+docker-ps                                                                      # List containers
+# Creating an Infinite loop on the background
+docker run -dit --name=myloop centos  /bin/sh -c "while true; do echo hello world; sleep 2; done"      # Infinite loop on the background
+# Open another sudo terminal --> docker attach myloop
+docker kill myloop 
