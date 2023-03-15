@@ -4,7 +4,7 @@ docker version                                                                 #
 docker ps                                                                      # List containers 
 alias docker-ps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"'  # Alias for pretty format docker ps
 docker-ps                                                                      # List container (Pretty format)
-docker run  httpd                                                              # Container in the Foreground --> Hanged terminal 
+docker run  httpd                                                              # Unnamed container in the Foreground --> Hanged terminal 
 docker run --help                                                              # Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 docker run -dit --name my-httpd -p 8080:80 httpd                               # Runs on the backgorund; Image: https://hub.docker.com/_/httpd  
 curl localhost:8080                                                            # http://localhost:8080                                                        
