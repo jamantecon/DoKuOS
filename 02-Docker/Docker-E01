@@ -1,1 +1,11 @@
-
+docker ps
+docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"                    # Pretty format
+docker run  httpd                                                              # Container in the Foreground --> Hanged terminal 
+docker run --help
+docker run -dit --name my-httpd -p 8080:80 httpd                               # Runs on the backgorund; Image: https://hub.docker.com/_/httpd  
+curl localhost:8080                                                            # http://localhost:8080                                                        
+docker stop  my-httpd                                                          # Stop container
+docker rm  my-httpd                                                            # Remove container
+docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"                    # List containers
+docker run -dit -p 7070:8080 --name myapache  centos/httpd-24-centos7          # https://hub.docker.com/r/centos/httpd-24-centos7
+curl localhost:7070                                                            # http://localhost:7070   
