@@ -24,3 +24,4 @@ docker-ps                                                                      #
 docker run -dit --name=myloop centos  /bin/sh -c "while true; do echo hello world; sleep 2; done"      # Infinite loop on the background
 # Open another sudo terminal --> docker attach myloop
 docker kill myloop 
+docker rm myloop
