@@ -9,8 +9,9 @@ docker run  httpd                                                              #
 docker run --help                                                              # Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 docker run -dit --name my-httpd -p 8080:80 httpd                               # Runs on the backgorund; Image: https://hub.docker.com/_/httpd  
 curl localhost:8080                                                            # http://localhost:8080  
-docker describe container my-httpd
+docker inspect container my-httpd                                              # Describe container info
 docker-ip my-httpd                                                             # Container IP   
+docker logs my-httpd                                                           # Container log information
 docker stop  my-httpd                                                          # Stop container
 docker rm  my-httpd                                                            # Remove container
 docker-ps                                                                      # List containers
