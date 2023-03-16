@@ -1,13 +1,16 @@
 # Docker-E01: Basic container management: starting, monitoring, entering, stoping and removing containers
 # ========================================================================================================
+alias docker-ps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"'                            # Alias for pretty format docker ps
+alias docker-ip='docker container inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"' # Alias for container IP
 docker version                                                                 # Docker version
 docker ps                                                                      # List containers 
-alias docker-ps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"'  # Alias for pretty format docker ps
 docker-ps                                                                      # List container (Pretty format)
 docker run  httpd                                                              # Unnamed container in the Foreground --> Hanged terminal 
 docker run --help                                                              # Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 docker run -dit --name my-httpd -p 8080:80 httpd                               # Runs on the backgorund; Image: https://hub.docker.com/_/httpd  
-curl localhost:8080                                                            # http://localhost:8080                                                        
+curl localhost:8080                                                            # http://localhost:8080  
+docker describe container my-httpd
+docker-ip my-httpd                                                             # Container IP   
 docker stop  my-httpd                                                          # Stop container
 docker rm  my-httpd                                                            # Remove container
 docker-ps                                                                      # List containers
