@@ -1,1 +1,84 @@
+# ======================================================================================
+# Docker-E02: Image management: Pulling, Commit, Building, Saving/Loading, Import/Export
+# ======================================================================================
+docker images                             # List local images (DLR)
+docker-ps                                 # List containers
+docker image rm ....                      # Remove all but Portainer & OpenShift
+docker search bash                        # Search (or surf) Docker Hub (DHR)
+docker pull bash:4.4                      # Pull version 4.4 image to DLR
+docker images                             # Check the new image size
+docker run -it --rm bash:4.4              # Start bash container (remove on exit)
+--> cat /etc/os-release                   # Container's OS version
+--> which bash                            # Containers bash dir
+--> echo $BASH_VERSION                    # Containers bash version
+--> exit                                  # Exit (and remove) container
+docker-ps                                 # List containers (check removing)
+# Building from Dockerfile
+# ============================================
+# Example 1: bash container
+# -----------------------------
+docker build -f DF-Alpine -t bash:sql .       # Building from Dockerfile (mysql+curl)
+docker run -it --rm --name mybcq bash:sql     # Running Alpine bash+sql+curl
+--> # Check mysql & curl                      # Launch mysql & curl
+--> exit                                      # Remove on exit
+# Example 2 : Python app 
+# ----------------------
+docker build -f Dockerfile -t hello-python:latest .          # Buildind new image from Dockerfile
+docker run -d  --name mypython -p 5001:5000 hello-python     # Starting container in the background
+
+
+# Building by commit
+# ==========================================
+docker run -it  --name mybcq bash:sql         # Starting container from bash:sql image         
+--> apk add nano                              # Instaling nano on Alpine
+--> exit
+docker commit mybcq bash:nano                 # Commit (saving) the container image as bash:nano
+docker rm mybcq                               # Deleting bash container
+docker run -it  --name mynano bash:nano       # Starting container form Alpine + nano image
+--> nano                                      # Checking nano
+--> exit
+docker rm mynano 
+
+# Building from source code (S2I)
+# =====================================
+# Usage: s2i build <source> <image> [<tag>] [flags]
+s2i build https://github.com/sclorg/django-ex centos/python-35-centos7 hello-python
+docker run -d --name mys2i -p 8080:8080 hello-python
+# ---------------------------------------
+git init
+git add -A
+git commit -m "3 commit"
+# ---------------------------------------
+s2i build . quay.io/centos7/python-38-centos7  hellopy-i
+docker run --name hellopy-c  -p 5001:5000 -it --rm  hellopy-i
+# -------------------------------------------------------
+s2i build . centos/nodejs-12-centos7 helnode-i
+docker run -p --name helnode-c 8080:8080 -it --rm helnode-i
+
+
+
+
+# Saving and loading images
+# ============================
+docker save -o mybnano.tar bash:nano          # Backup image
+mkdir mybnano                                 # Dir for untaring image
+tar -xf mybnano.tar -C mybnano                # Untaring image
+tree –L 1 mybnano                             # Show image tree
+docker pull alpine:3.14                       # Pull image (for later saving)
+docker save -o myalpine.tar alpine:3.14       # Backing up image
+docker rmi alpine:3.14                        # Removing (accidentally) 
+docker load -i myalpine.tar                   # Restoring from backup (the same image!)
+
+# Exporting and Importing images
+# ================================
+docker run -d --name mybash4 bash:4.4         # Running bash4 container
+docker export mybash4 -o mybash4.tar          # Export image as .tar file
+docker rm mybash4                             # Remove bash4 container
+docker import mybash4.tar bash:4.5            # Import image with a NEW tag
+docker run -dit --name mybash5 bash:4.4 sh    # Run new tagged image (without sh doesn't work !)
+docker attach mybash5                         # Attach the new container
+--> cat /etc/os-release                       # Entering commands in the container shell
+--> exit                                      # Exiting container
+docker rm mybash5                             # Removing container 
+
 
