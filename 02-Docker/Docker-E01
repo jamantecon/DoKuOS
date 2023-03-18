@@ -3,6 +3,7 @@
 alias docker-ps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"'                            # Alias for pretty format docker ps
 alias docker-ip='docker container inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"' # Alias for container IP
 docker version                                                                 # Docker version
+docker info                                                                    # Docker info 
 docker ps                                                                      # List containers 
 docker-ps                                                                      # List container (Pretty format)
 docker run  httpd                                                              # Unnamed container in the Foreground --> Hanged terminal 
