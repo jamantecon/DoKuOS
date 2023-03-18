@@ -1,4 +1,4 @@
-# Docker-E01: Basic container management: starting, monitoring, entering, stoping and removing containers
+# Docker-E01- Basic container management: starting, monitoring, entering, stoping and removing containers
 # ========================================================================================================
 alias docker-ps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Mounts}}"'                            # Alias for pretty format docker ps
 alias docker-ip='docker container inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"' # Alias for container IP
