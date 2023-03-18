@@ -15,17 +15,22 @@ docker run -it --rm bash:4.4              # Start bash container (remove on exit
 docker-ps                                 # List containers (check removing)
 # Building from Dockerfile
 # ============================================
-# Example 1: bash container
-# -----------------------------
+# Example 1: bash container (Z02-Bash)
+# -------------------------------------------
 docker build -f DF-Alpine -t bash:sql .       # Building from Dockerfile (mysql+curl)
 docker run -it --rm --name mybcq bash:sql     # Running Alpine bash+sql+curl
 --> # Check mysql & curl                      # Launch mysql & curl
 --> exit                                      # Remove on exit
-# Example 2 : Python app 
-# ----------------------
-docker build -f Dockerfile -t hello-python:latest .          # Buildind new image from Dockerfile
-docker run -d  --name mypython -p 5001:5000 hello-python     # Starting container in the background
 
+# Example 2 : Python app (Z02-Python)
+# ---------------------------------------
+docker build -f Dockerfile -t hello-python:latest .          # Buildind new image from Dockerfile
+docker run -d  --name mypython -p 5001:5000 hello-python     # http://localhost:5001
+
+# Example 3 : Nodejs app (Z02-Nodejs)
+# -------------------------------------
+docker build -t hello-docker-nodejs .
+docker run -p 3000:3000 -it --rm hello-docker-nodejs         # http://localhost:3000
 
 # Building by commit
 # ==========================================
@@ -45,17 +50,6 @@ docker rm mynano
 s2i build https://github.com/sclorg/django-ex centos/python-35-centos7 hello-python
 docker run -d --name mys2i -p 8080:8080 hello-python
 # ---------------------------------------
-git init
-git add -A
-git commit -m "3 commit"
-# ---------------------------------------
-s2i build . quay.io/centos7/python-38-centos7  hellopy-i
-docker run --name hellopy-c  -p 5001:5000 -it --rm  hellopy-i
-# -------------------------------------------------------
-s2i build . centos/nodejs-12-centos7 helnode-i
-docker run -p --name helnode-c 8080:8080 -it --rm helnode-i
-
-
 
 
 # Saving and loading images
